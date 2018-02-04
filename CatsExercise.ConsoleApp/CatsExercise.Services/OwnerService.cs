@@ -1,16 +1,12 @@
-﻿using CatsExercise.Interfaces.Services;
-using CatsExercise.Models;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using CatsExercise.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace CatsExercise.Services
 {
-    public class OwnerService : IEntityService<Owner>
+    public class OwnerService : BaseEntityService<Owner>
     {
-        public async Task<IEnumerable<Owner>> All()
+        public OwnerService(IConfiguration configuration): base(configuration)
         {
-            throw new NotImplementedException();
         }
     }
 }

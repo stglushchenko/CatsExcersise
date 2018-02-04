@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.IO;
+using Microsoft.Extensions.Configuration;
 
 namespace CatsExercise.ConsoleApp
 {
@@ -6,7 +7,16 @@ namespace CatsExercise.ConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var configuration = GetConfiguration();
+        }
+
+        private static IConfiguration GetConfiguration()
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
+
+            return builder.Build();
         }
     }
 }
