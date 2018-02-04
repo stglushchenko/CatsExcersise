@@ -1,14 +1,19 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text;
+using CatsExercise.Interfaces.Reporting;
 
-namespace CatsExercise.Reporting.Extensions
+namespace CatsExercise.Reporting
 {
-    public static class PrintingExtension
+    public class LookupPrintingService: ILookupPrintingService
     {
-        
-
-        public static string ToFormattedResult(this ILookup<string, string> lookup)
+        public string PrintItemsWithHyphens(ILookup<string, string> lookup)
         {
+            if (lookup == null)
+            {
+                throw new ArgumentNullException(nameof(lookup));
+            }
+
             var stringBuilder = new StringBuilder();
 
             foreach(var grouping in lookup)
