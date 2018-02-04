@@ -5,17 +5,19 @@ namespace CatsExercise.Reporting.Extensions
 {
     public static class PrintingExtension
     {
+        
+
         public static string ToFormattedResult(this ILookup<string, string> lookup)
         {
             var stringBuilder = new StringBuilder();
 
             foreach(var grouping in lookup)
             {
-                stringBuilder.Append(grouping.Key);
+                stringBuilder.AppendLine(grouping.Key);
 
                 foreach (var item in grouping)
                 {
-                    stringBuilder.Append($"  -{item}");
+                    stringBuilder.AppendLine($"  -{item}");
                 }
             }
 
