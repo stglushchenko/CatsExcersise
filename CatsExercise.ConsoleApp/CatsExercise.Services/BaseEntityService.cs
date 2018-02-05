@@ -1,6 +1,7 @@
 ﻿using CatsExercise.Interfaces.Services;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
@@ -15,7 +16,7 @@ namespace CatsExercise.Services
         private readonly string _baseServicePath;
 
         private readonly string _entityPath;
-
+        
         public BaseEntityService(IConfiguration configuration)
         {
             _baseServicePath = configuration.GetSection("BaseServicePath").Value;

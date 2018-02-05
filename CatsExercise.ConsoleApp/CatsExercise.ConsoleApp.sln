@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatsExercise.Reporting", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatsExercise.ReportingTests", "CatsExercise.ReportingTests\CatsExercise.ReportingTests.csproj", "{73C8C8F6-B7AA-4D4E-BADB-D6CE6A3DFCFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatsExercise.ServicesTests", "CatsExercise.ServicesTests\CatsExercise.ServicesTests.csproj", "{03476CAB-B396-4BB9-8B4B-0E30014FF017}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{73C8C8F6-B7AA-4D4E-BADB-D6CE6A3DFCFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73C8C8F6-B7AA-4D4E-BADB-D6CE6A3DFCFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73C8C8F6-B7AA-4D4E-BADB-D6CE6A3DFCFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03476CAB-B396-4BB9-8B4B-0E30014FF017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03476CAB-B396-4BB9-8B4B-0E30014FF017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03476CAB-B396-4BB9-8B4B-0E30014FF017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03476CAB-B396-4BB9-8B4B-0E30014FF017}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
