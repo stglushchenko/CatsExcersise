@@ -106,8 +106,14 @@ namespace CatsExercise.WorkflowsIntegrationTests
             Initialize("empty.json");
 
             // act
-            var result = await _targetClass.Run();
-            _listener.Stop();
+            try
+            {
+                var result = await _targetClass.Run();
+            }
+            finally
+            {
+                _listener.Stop();
+            }
 
             // assert expected exception
         }
@@ -120,8 +126,14 @@ namespace CatsExercise.WorkflowsIntegrationTests
             Initialize("wrongPetType.json");
 
             // act
-            var result = await _targetClass.Run();
-            _listener.Stop();
+            try
+            {
+                var result = await _targetClass.Run();
+            }
+            finally
+            {
+                _listener.Stop();
+            }
 
             // assert expected exception
         }
