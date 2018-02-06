@@ -1,5 +1,6 @@
 using CatsExercise.ConsoleApp;
 using CatsExercise.Interfaces.IoC;
+using CatsExercise.Services.Exceptions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
@@ -119,8 +120,8 @@ namespace CatsExercise.WorkflowsIntegrationTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(JsonSerializationException))]
-        public async Task Bootstrapper_WrongPetType_NormalOutput()
+        [ExpectedException(typeof(ServiceLayerException))]
+        public async Task Bootstrapper_WrongPetType_ServiceLayerException()
         {
             // arrange
             Initialize("wrongPetType.json");

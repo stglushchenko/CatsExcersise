@@ -1,10 +1,12 @@
 using CatsExercise.Models;
 using CatsExercise.Services;
+using CatsExercise.Services.Exceptions;
 using CatsExercise.ServicesTests.Comparers;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -46,7 +48,7 @@ namespace CatsExercise.ServicesTests
 
             InitializeListener(config);
 
-            _targetClass = new OwnerService(config);
+            _targetClass = new OwnerService(config, Mock.Of<ILogger>());
         }
 
         private static void InitializeListener(IConfiguration config)
@@ -209,8 +211,8 @@ namespace CatsExercise.ServicesTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(JsonSerializationException))]
-        public async Task All_WrongPetType_JsonSerializationException()
+        [ExpectedException(typeof(ServiceLayerException))]
+        public async Task All_WrongPetType_ServiceLayerException()
         {
             //arrange
             Initialize("wrongPetType.json");

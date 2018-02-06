@@ -1,5 +1,7 @@
 ﻿using CatsExercise.Interfaces.Services;
+using CatsExercise.Services.Exceptions;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -16,26 +18,44 @@ namespace CatsExercise.Services
         private readonly string _baseServicePath;
 
         private readonly string _entityPath;
-        
-        public BaseEntityService(IConfiguration configuration)
+        private readonly ILogger _logger;
+
+        public BaseEntityService(IConfiguration configuration, ILogger logger)
         {
             _baseServicePath = configuration.GetSection("BaseServicePath").Value;
             _entityPath = configuration.GetSection("EntitiesPaths")[typeof(T).Name];
+            _logger = logger;
         }
 
         public async Task<IEnumerable<T>> All()
         {
-            using (Stream stream = await _httpClient.GetStreamAsync($"{_baseServicePath}{_entityPath}"))
+            try
             {
-                using (StreamReader streamReader = new StreamReader(stream))
+                using (Stream stream = await _httpClient.GetStreamAsync($"{_baseServicePath}{_entityPath}"))
                 {
-                    using (JsonReader jsonReader = new JsonTextReader(streamReader))
+                    using (StreamReader streamReader = new StreamReader(stream))
                     {
-                        var serializer = new JsonSerializer();
+                        using (JsonReader jsonReader = new JsonTextReader(streamReader))
+                        {
+                            var serializer = new JsonSerializer();
 
-                        return serializer.Deserialize<IEnumerable<T>>(jsonReader);
+                            return serializer.Deserialize<IEnumerable<T>>(jsonReader);
+                        }
                     }
                 }
+            }
+            catch (Exception ex) when 
+            (
+                ex is HttpRequestException
+                || ex is ArgumentNullException
+                || ex is JsonSerializationException
+            )
+            {
+                var errorMessage = $"Error occured while retrieving All entities of type {typeof(T).Name}\r\nErrorMessage: {ex.Message}";
+
+                _logger.LogError(ex, errorMessage);
+
+                throw new ServiceLayerException(errorMessage);
             }
         }
     }
