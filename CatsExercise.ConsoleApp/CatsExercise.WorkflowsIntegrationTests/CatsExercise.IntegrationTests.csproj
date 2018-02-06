@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.2.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
+    <PackageReference Include="Unity" Version="5.5.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CatsExercise.ConsoleApp\CatsExercise.ConsoleApp.csproj" />
+    <ProjectReference Include="..\CatsExercise.Interfaces\CatsExercise.Interfaces.csproj" />
+    <ProjectReference Include="..\CatsExercise.Models\CatsExercise.Models.csproj" />
+    <ProjectReference Include="..\CatsExercise.Reporting\CatsExercise.Reporting.csproj" />
+    <ProjectReference Include="..\CatsExercise.Services\CatsExercise.Services.csproj" />
+    <ProjectReference Include="..\CatsExercise.Workflows\CatsExercise.Workflows.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="WorkflowTestData\empty.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="WorkflowTestData\people.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="WorkflowTestData\wrongPetType.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

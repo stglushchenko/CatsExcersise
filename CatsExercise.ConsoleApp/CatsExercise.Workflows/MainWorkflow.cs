@@ -23,7 +23,7 @@ namespace CatsExercise.Workflows
             _lookupPrintingService = lookupPrintingService;
         }
 
-        public async Task Run()
+        public async Task<string> Run()
         {
             var owners = await _ownerService.All();
 
@@ -31,9 +31,7 @@ namespace CatsExercise.Workflows
 
             var result = _lookupPrintingService.PrintItemsWithHyphens(ownersLookup);
 
-            Console.Write(result);
-
-            Console.ReadKey();
+            return result;
         }
     }
 }

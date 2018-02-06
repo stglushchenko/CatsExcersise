@@ -4,6 +4,6 @@ namespace CatsExercise.Interfaces.Workflows
 {
     public interface IWorkflow
     {
-        Task Run();
+        Task<string> Run();
     }
 }
