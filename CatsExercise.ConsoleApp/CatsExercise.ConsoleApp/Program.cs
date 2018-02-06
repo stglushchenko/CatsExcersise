@@ -12,7 +12,17 @@ namespace CatsExercise.ConsoleApp
             var bootstrapper = new Bootstrapper();
             bootstrapper.ConfigureContainer(configuration);
 
-            Console.Write(bootstrapper.Run().Result);
+            try
+            {
+                var result = bootstrapper.Run().Result;
+                Console.Write(result);
+            }
+            catch(Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+            
+            Console.ReadKey();
         }
 
         private static IConfiguration GetConfiguration()
