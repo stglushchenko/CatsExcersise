@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace CatsExercise.Services
@@ -51,12 +52,15 @@ namespace CatsExercise.Services
                 || ex is JsonSerializationException
             )
             {
-                var errorMessage = $"Error occured while retrieving All entities of type {typeof(T).Name}\r\nErrorMessage: {ex.Message}";
+                var errorMessage = GetErrorMessage(ex);
 
                 _logger.LogError(ex, errorMessage);
 
                 throw new ServiceLayerException(errorMessage);
             }
         }
+
+        private string GetErrorMessage(Exception ex, [CallerMemberName] string callerName = null) => 
+            $"Error occured while retrieving {callerName} entities of type {typeof(T).Name}\r\nErrorMessage: {ex.Message}";
     }
 }
